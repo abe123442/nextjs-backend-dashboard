@@ -14,6 +14,10 @@
 - Added error handling for duplicate store name entries in route.ts, utils.ts.
   - Improved error handling on client side using react-hot-toast.
 - Added `routes` grouping for all routes / route categories under `auth`, `dashboard` and `root` for consistency.
+- Added simple RFC navbar, and afterSignOutUrl to have auth done on the same source (not on an intermediary clerk website)
+- If accessing a path parameter via `useParams` is undefined, check that the slug folder name matches the path parameter name
+- Moved main-nav, navbar and store-switcher into `@/components/standalone`
+- Created a combobox component that handles switching stores and creating a new store (in store-switcher)
 
 
 
