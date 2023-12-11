@@ -1,7 +1,7 @@
 ## Changelog
 
 - Using NextJS v14
-- Solved error `[webpack.cache.PackFileCacheStrategy] Serializing big strings (100kiB) impacts deserialization performance (consider using Buffer instead and decode when needed)` by adding `compress: true` to the next config file.
+- ~~Solved error~~ `[webpack.cache.PackFileCacheStrategy] Serializing big strings (100kiB) impacts deserialization performance (consider using Buffer instead and decode when needed)` by adding `compress: true` to the next config file.
 - It is a good idea to commit package-lock.json to source control
 - Added username sign in method to app on Clerk Dashboard (external website)
 - Custom auth
@@ -9,6 +9,10 @@
   - Using `register`/`login` as the names of the auth routes that invoke Clerk instead of `sign-up`/`sign-in`
 
 - Clerk component docs are now at `https://clerk.com/docs/components`
+- Using Supabase (postgresql) instead of PlanetScale (mysql)
+  - https://supabase.com/partners/integrations/prisma
+- Added error handling for duplicate store name entries in route.ts, utils.ts.
+  - Improved error handling on client side using react-hot-toast.
 
 
 
