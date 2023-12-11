@@ -1,10 +1,11 @@
 import prismadb from "@/lib/prismadb";
 import { auth } from "@clerk/nextjs";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
-import { NextResponse } from "next/server";
+import { redirect } from "next/navigation";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(
-  req: Request,
+  req: NextRequest,
 ) {
   try {
     const { userId } = auth();
@@ -24,8 +25,10 @@ export async function POST(
         userId
       }
     });
+
     return NextResponse.json(store);
   } catch (error) {
+    console.log(error);
     switch (true) {
       case error instanceof PrismaClientKnownRequestError:
         if (error.code === 'P2002') {
@@ -36,5 +39,7 @@ export async function POST(
       default:
         return new NextResponse(JSON.stringify('Something went wrong.'), { status: 500 });
     }
+  } finally {
+    // return NextResponse.redirect(new URL('/', req.url));
   }
 }

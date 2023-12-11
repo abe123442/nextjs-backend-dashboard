@@ -4,7 +4,7 @@ import * as z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
-import { toast } from 'react-hot-toast'
+import { toast } from 'react-hot-toast';
 
 import { useStoreModal } from "@/hooks/use-store-modal";
 import { Modal } from "@/components/ui/modal";
@@ -39,8 +39,8 @@ export const StoreModal = () => {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       setLoading(true);
-      await postData('/api/stores', values);
-      toast.success('Store Created.');
+      const response = await postData('/api/stores', values);
+      window.location.assign(`/${response.id}`);
     } catch (error) {
       toast.error(error instanceof Error ? error.message : 'Something went wrong.');
     } finally {
@@ -84,6 +84,7 @@ export const StoreModal = () => {
                 <Button
                   disabled={loading}
                   variant='outline'
+                  type='reset'
                   onClick={storeModal.onClose}
                 >
                   Cancel

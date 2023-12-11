@@ -13,6 +13,7 @@
   - https://supabase.com/partners/integrations/prisma
 - Added error handling for duplicate store name entries in route.ts, utils.ts.
   - Improved error handling on client side using react-hot-toast.
+- Added `routes` grouping for all routes / route categories under `auth`, `dashboard` and `root` for consistency.
 
 
 

@@ -35,6 +35,7 @@ export async function postData(url: string, payload: Object) {
     const response = text === "" ? {} : JSON.parse(text);
     return response;
   } catch (error) {
+    console.log(error);
     throw error;
   }
 }
