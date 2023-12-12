@@ -18,7 +18,7 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { postData } from '@/lib/utils';
+import axios, { isAxiosError } from 'axios';
 
 const formSchema = z.object({
   name: z.string().min(1)
@@ -39,10 +39,10 @@ export const StoreModal = () => {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       setLoading(true);
-      const response = await postData('/api/stores', values);
-      window.location.assign(`/${response.id}`);
+      const response = await axios.post('/api/stores', values);
+      window.location.assign(`/${response.data.id}`);
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : 'Something went wrong.');
+      toast.error(isAxiosError(error) ? error.response?.data : 'Something went wrong.');
     } finally {
       setLoading(false);
     }
