@@ -32,6 +32,11 @@ export default function MainNav({ className }: React.HTMLAttributes<HTMLElement>
       active: pathname.startsWith(`/${storeId}/sizes`),
     },
     {
+      href: `/${storeId}/colours`,
+      label: "Colours",
+      active: pathname.startsWith(`/${storeId}/colours`),
+    },
+    {
       href: `/${storeId}/settings`,
       label: "Settings",
       active: pathname === `/${storeId}/settings`,
