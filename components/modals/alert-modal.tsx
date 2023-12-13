@@ -1,30 +1,30 @@
-'use client';
+"use client"
 
-import { useEffect, useState } from "react";
-import { Modal } from "@/components/ui/modal";
-import { Button } from "@/components/ui/button";
+import { useEffect, useState } from "react"
+import { Modal } from "@/components/ui/modal"
+import { Button } from "@/components/ui/button"
 
 interface AlertModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  onConfirm: () => void;
-  loading: boolean;
+  isOpen: boolean
+  onClose: () => void
+  onConfirm: () => void
+  loading: boolean
 }
 
 export const AlertModal: React.FC<AlertModalProps> = ({
   isOpen,
   onClose,
   onConfirm,
-  loading
+  loading,
 }) => {
-  const [isMounted, setIsMounted] = useState(false);
+  const [isMounted, setIsMounted] = useState(false)
 
   useEffect(() => {
-    setIsMounted(true);
-  }, []);
+    setIsMounted(true)
+  }, [])
 
   if (!isMounted) {
-    return null;
+    return null
   }
 
   return (
@@ -35,19 +35,14 @@ export const AlertModal: React.FC<AlertModalProps> = ({
       onClose={onClose}
     >
       <div className="pt-6 space-x-2 flex items-center justify-end w-full">
-        <Button
-          disabled={loading}
-          variant='outline'
-          type='reset'
-          onClick={onClose}
-        >
+        <Button disabled={loading} variant="outline" type="reset" onClick={onClose}>
           Cancel
         </Button>
 
         <Button
           disabled={loading}
-          variant='destructive'
-          type='submit'
+          variant="destructive"
+          type="submit"
           onClick={onConfirm}
         >
           Continue
