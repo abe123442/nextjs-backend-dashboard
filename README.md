@@ -22,6 +22,9 @@
   - https://stackoverflow.com/questions/56353853
 - Using axios instead of native fetch api to perform API calls.
 - Made reusable api-alert component which looks like swagger api docs for this dashboard app
+- Added action 'Duplicate' as a DropdownMenuItem to component cell-action
+- Listing composite IDs in single array in Category model instead of one after another
+  - https://www.prisma.io/docs/orm/reference/prisma-schema-reference#id-1
 
 
 
