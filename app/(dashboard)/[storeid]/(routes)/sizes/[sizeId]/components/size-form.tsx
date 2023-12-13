@@ -61,10 +61,7 @@ const SizeForm: React.FC<SizeFormProps> = ({ initialData }) => {
     try {
       setLoading(true)
       if (initialData) {
-        await axios.patch(
-          `/api/${params.storeId}/sizes/${params.sizeId}`,
-          data
-        )
+        await axios.patch(`/api/${params.storeId}/sizes/${params.sizeId}`, data)
       } else {
         await axios.post(`/api/${params.storeId}/sizes`, data)
       }
@@ -132,11 +129,7 @@ const SizeForm: React.FC<SizeFormProps> = ({ initialData }) => {
                   <FormLabel>Name</FormLabel>
 
                   <FormControl>
-                    <Input
-                      disabled={loading}
-                      placeholder="Size name"
-                      {...field}
-                    />
+                    <Input disabled={loading} placeholder="Size name" {...field} />
                   </FormControl>
 
                   <FormMessage />
@@ -152,11 +145,7 @@ const SizeForm: React.FC<SizeFormProps> = ({ initialData }) => {
                   <FormLabel>Value</FormLabel>
 
                   <FormControl>
-                    <Input
-                      disabled={loading}
-                      placeholder="Size value"
-                      {...field}
-                    />
+                    <Input disabled={loading} placeholder="Size value" {...field} />
                   </FormControl>
 
                   <FormMessage />
