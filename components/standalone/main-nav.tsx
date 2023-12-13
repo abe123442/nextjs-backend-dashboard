@@ -22,6 +22,11 @@ export default function MainNav({ className }: React.HTMLAttributes<HTMLElement>
       active: pathname.startsWith(`/${storeId}/billboards`),
     },
     {
+      href: `/${storeId}/categories`,
+      label: "Categories",
+      active: pathname.startsWith(`/${storeId}/categories`),
+    },
+    {
       href: `/${storeId}/settings`,
       label: "Settings",
       active: pathname === `/${storeId}/settings`,
