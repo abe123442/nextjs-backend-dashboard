@@ -4,7 +4,7 @@ import { useParams, useRouter } from "next/navigation"
 import { useState } from "react"
 import axios from "axios"
 import toast from "react-hot-toast"
-import { Copy, Edit, MoreHorizontal, Trash } from "lucide-react"
+import { Copy, CopyPlus, Edit, MoreHorizontal, Trash } from "lucide-react"
 
 import { AlertModal } from "@/components/modals/alert-modal"
 import {
@@ -17,6 +17,7 @@ import {
 import { Button } from "@/components/ui/button"
 
 import { BillboardColumn } from "./columns"
+import { BillboardFormValues } from "../[billboardId]/components/billboard-form"
 
 interface CellActionProps {
   data: BillboardColumn
@@ -32,6 +33,14 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
   const onCopy = (id: string) => {
     navigator.clipboard.writeText(id)
     toast.success("Billboard ID copied to clipboard.")
+  }
+
+  const onDuplicate = async () => {
+    const res = await axios.get(`/api/${params.storeId}/billboards/${data.id}`)
+    const values = res.data as BillboardFormValues
+    await axios.post(`/api/${params.storeId}/billboards`, values)
+    router.refresh()
+    toast.success("Billboard duplicated.")
   }
 
   const onDelete = async () => {
@@ -79,6 +88,11 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
           >
             <Edit className="mr-2 h-4 w-4" />
             Update
+          </DropdownMenuItem>
+
+          <DropdownMenuItem onClick={() => onDuplicate()}>
+            <CopyPlus className="mr-2 h-4 w-4" />
+            Duplicate
           </DropdownMenuItem>
 
           <DropdownMenuItem onClick={() => setOpen(true)}>
