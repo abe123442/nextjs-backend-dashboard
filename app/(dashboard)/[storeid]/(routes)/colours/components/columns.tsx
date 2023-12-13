@@ -25,7 +25,7 @@ export const columns: ColumnDef<ColourColumn>[] = [
           style={{ backgroundColor: row.original.value }}
         />
       </div>
-    )
+    ),
   },
   {
     accessorKey: "createdAt",
