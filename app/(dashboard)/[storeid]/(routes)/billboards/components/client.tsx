@@ -12,12 +12,10 @@ import { ApiList } from "@/components/ui/api-list"
 import { BillboardColumn, columns } from "./columns"
 
 interface BillboardClientProps {
-  data: BillboardColumn[];
+  data: BillboardColumn[]
 }
 
-export const BillboardClient: React.FC<BillboardClientProps> = ({
-  data
-}) => {
+export const BillboardClient: React.FC<BillboardClientProps> = ({ data }) => {
   const router = useRouter()
   const params = useParams()
 
@@ -38,7 +36,7 @@ export const BillboardClient: React.FC<BillboardClientProps> = ({
       <Separator />
 
       <DataTable columns={columns} data={data} filterKey="label" />
-      <Heading title="API" description="API calls for Billboards"/>
+      <Heading title="API" description="API calls for Billboards" />
       <Separator />
 
       <ApiList />
