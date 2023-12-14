@@ -8,4 +8,4 @@ export function cn(...inputs: ClassValue[]) {
 export const formatPrice = new Intl.NumberFormat("en-US", {
   style: "currency",
   currency: "AUD",
-})
+}).format
