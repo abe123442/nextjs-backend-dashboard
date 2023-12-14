@@ -23,7 +23,7 @@ export async function GET(
         category: true,
         size: true,
         colour: true,
-      }
+      },
     })
 
     return NextResponse.json(product)
@@ -110,7 +110,7 @@ export async function PATCH(
         colourId,
         sizeId,
         images: {
-          deleteMany: {}
+          deleteMany: {},
         },
         isFeatured,
         isArchived,
@@ -119,15 +119,15 @@ export async function PATCH(
 
     const product = await prismadb.product.update({
       where: {
-        id: params.productId
+        id: params.productId,
       },
       data: {
         images: {
           createMany: {
-            data: [...images.map((image: { url: string }) => image)]
-          }
-        }
-      }
+            data: [...images.map((image: { url: string }) => image)],
+          },
+        },
+      },
     })
 
     return NextResponse.json(product)

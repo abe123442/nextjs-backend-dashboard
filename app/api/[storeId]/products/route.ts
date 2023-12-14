@@ -73,10 +73,8 @@ export async function POST(
         sizeId,
         images: {
           createMany: {
-            data: [
-              ...images.map((image: { url: string }) => image)
-            ]
-          }
+            data: [...images.map((image: { url: string }) => image)],
+          },
         },
         isFeatured,
         isArchived,
@@ -123,7 +121,7 @@ export async function GET(
         size: true,
       },
       orderBy: {
-        createdAt: "desc"
+        createdAt: "desc",
       },
     })
 

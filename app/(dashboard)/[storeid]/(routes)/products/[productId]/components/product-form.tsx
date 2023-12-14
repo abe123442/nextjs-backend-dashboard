@@ -30,7 +30,7 @@ import {
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue
+  SelectValue,
 } from "@/components/ui/select"
 import { Checkbox } from "@/components/ui/checkbox"
 
@@ -48,11 +48,13 @@ const formSchema = z.object({
 export type ProductFormValues = z.infer<typeof formSchema>
 
 interface ProductFormProps {
-  initialData: Product & {
-    images: Image[]
-  } | null,
-  categories: Category[],
-  sizes: Size[],
+  initialData:
+    | (Product & {
+        images: Image[]
+      })
+    | null
+  categories: Category[]
+  sizes: Size[]
   colours: Colour[]
 }
 
@@ -60,7 +62,7 @@ const ProductForm: React.FC<ProductFormProps> = ({
   initialData,
   categories,
   sizes,
-  colours
+  colours,
 }) => {
   const params = useParams()
   const router = useRouter()
@@ -76,19 +78,21 @@ const ProductForm: React.FC<ProductFormProps> = ({
 
   const form = useForm<ProductFormValues>({
     resolver: zodResolver(formSchema),
-    defaultValues: initialData ? {
-      ...initialData,
-      price: parseFloat(String(initialData.price)),
-    } : {
-      name: "",
-      images: [],
-      price: 0,
-      categoryId: "",
-      colourId: "",
-      sizeId: "",
-      isFeatured: false,
-      isArchived: false,
-    },
+    defaultValues: initialData
+      ? {
+          ...initialData,
+          price: parseFloat(String(initialData.price)),
+        }
+      : {
+          name: "",
+          images: [],
+          price: 0,
+          categoryId: "",
+          colourId: "",
+          sizeId: "",
+          isFeatured: false,
+          isArchived: false,
+        },
   })
 
   const onSubmit = async (data: ProductFormValues) => {
@@ -166,10 +170,14 @@ const ProductForm: React.FC<ProductFormProps> = ({
 
                 <FormControl>
                   <ImageUpload
-                    images={field.value.map(image => image.url)}
+                    images={field.value.map((image) => image.url)}
                     disabled={loading}
                     onChange={(url) => field.onChange([...field.value, { url }])}
-                    onRemove={(url) => field.onChange([...field.value.filter(current => current.url !== url)])}
+                    onRemove={(url) =>
+                      field.onChange([
+                        ...field.value.filter((current) => current.url !== url),
+                      ])
+                    }
                   />
                 </FormControl>
 
@@ -337,9 +345,7 @@ const ProductForm: React.FC<ProductFormProps> = ({
                     />
                   </FormControl>
                   <div className="space-y-1 leading-none">
-                    <FormLabel>
-                      Featured
-                    </FormLabel>
+                    <FormLabel>Featured</FormLabel>
                     <FormDescription>
                       This product will appear on the home page
                     </FormDescription>
@@ -360,9 +366,7 @@ const ProductForm: React.FC<ProductFormProps> = ({
                     />
                   </FormControl>
                   <div className="space-y-1 leading-none">
-                    <FormLabel>
-                      Archived
-                    </FormLabel>
+                    <FormLabel>Archived</FormLabel>
                     <FormDescription>
                       This product will not appear anywhere in the store
                     </FormDescription>
