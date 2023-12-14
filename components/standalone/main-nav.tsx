@@ -10,43 +10,31 @@ export default function MainNav({ className }: React.HTMLAttributes<HTMLElement>
   const params = useParams()
 
   const storeId = params.storeId.toString()
+  const routeLabels = [
+    "Billboards",
+    "Categories",
+    "Sizes",
+    "Colours",
+    "Products",
+    "Orders",
+    "Settings",
+  ]
+
   const routes = [
     {
       href: `/${storeId}`,
       label: "Overview",
       active: pathname === `/${storeId}`,
     },
-    {
-      href: `/${storeId}/billboards`,
-      label: "Billboards",
-      active: pathname.startsWith(`/${storeId}/billboards`),
-    },
-    {
-      href: `/${storeId}/categories`,
-      label: "Categories",
-      active: pathname.startsWith(`/${storeId}/categories`),
-    },
-    {
-      href: `/${storeId}/sizes`,
-      label: "Sizes",
-      active: pathname.startsWith(`/${storeId}/sizes`),
-    },
-    {
-      href: `/${storeId}/colours`,
-      label: "Colours",
-      active: pathname.startsWith(`/${storeId}/colours`),
-    },
-    {
-      href: `/${storeId}/products`,
-      label: "Products",
-      active: pathname.startsWith(`/${storeId}/products`),
-    },
-    {
-      href: `/${storeId}/settings`,
-      label: "Settings",
-      active: pathname === `/${storeId}/settings`,
-    },
   ]
+
+  routes.push(
+    ...routeLabels.map((label) => ({
+      label,
+      href: `/${storeId}/${label.toLowerCase()}`,
+      active: pathname.startsWith(`/${storeId}/${label.toLowerCase()}`),
+    }))
+  )
 
   return (
     <nav className={cn("flex items-center space-x-4 lg:space-x-6", className)}>
