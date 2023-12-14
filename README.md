@@ -25,6 +25,7 @@
 - Added action 'Duplicate' as a DropdownMenuItem to component cell-action
 - Listing composite IDs in single array in Category model instead of one after another
   - https://www.prisma.io/docs/orm/reference/prisma-schema-reference#id-1
+- TODO: Make a generic ItemClient component to reduce LOC in `client.tsx`
 
 
 
