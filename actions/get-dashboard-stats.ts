@@ -1,6 +1,8 @@
 import prismadb from "../lib/prismadb"
 
 export const getStoreAllDetails = async (storeId: string) => {
+  console.log(storeId)
+  console.log("here")
   return await prismadb.store.findUnique({
     where: {
       id: storeId

@@ -19,6 +19,7 @@ interface DashboardPageProps {
 }
 
 const DashboardPage: React.FC<DashboardPageProps> = async ({ params }) => {
+  console.log("Hello from dashboard params", params)
   const store = await getStoreAllDetails(params.storeId)
 
   if (!store) {
