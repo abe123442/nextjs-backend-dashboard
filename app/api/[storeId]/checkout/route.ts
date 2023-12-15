@@ -1,8 +1,8 @@
-import { NextResponse } from "next/server";
-import Stripe from "stripe";
-import { stripe } from "@/lib/stripe";
+import { NextResponse } from "next/server"
+import Stripe from "stripe"
+import { stripe } from "@/lib/stripe"
 
-import prismadb from "@/lib/prismadb";
+import prismadb from "@/lib/prismadb"
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -18,7 +18,7 @@ export async function POST(
   req: Request,
   { params }: { params: { storeId: string } }
 ) {
-  const response = await req.json() as { productIds: string[] }
+  const response = (await req.json()) as { productIds: string[] }
   const { productIds } = response
 
   if (!productIds || productIds.length === 0) {
@@ -41,9 +41,9 @@ export async function POST(
       price_data: {
         currency: "AUD",
         product_data: {
-          name: product.name
+          name: product.name,
         },
-        unit_amount: product.price.toNumber() * 100
+        unit_amount: product.price.toNumber() * 100,
       },
     })
   })
@@ -56,12 +56,12 @@ export async function POST(
         create: productIds.map((productId) => ({
           product: {
             connect: {
-              id: productId
-            }
-          }
-        }))
-      }
-    }
+              id: productId,
+            },
+          },
+        })),
+      },
+    },
   })
 
   const session = await stripe.checkout.sessions.create({
@@ -69,7 +69,7 @@ export async function POST(
     mode: "payment",
     billing_address_collection: "required",
     phone_number_collection: {
-      enabled: true
+      enabled: true,
     },
     success_url: `${process.env.FRONTEND_STORE_URL}/cart?success=1`,
     cancel_url: `${process.env.FRONTEND_STORE_URL}/cart?cancelled=1`,
@@ -78,7 +78,10 @@ export async function POST(
     },
   })
 
-  return NextResponse.json({ url: session.url }, {
-    headers: corsHeaders
-  })
+  return NextResponse.json(
+    { url: session.url },
+    {
+      headers: corsHeaders,
+    }
+  )
 }

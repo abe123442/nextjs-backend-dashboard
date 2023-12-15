@@ -1,7 +1,13 @@
 import { CreditCard, DollarSign, Package } from "lucide-react"
 
 import { formatPrice } from "@/lib/utils"
-import { getGraphRevenue, getSalesCount, getStockCount, getStoreAllDetails, getStoreRevenue } from "@/actions/get-dashboard-stats"
+import {
+  getGraphRevenue,
+  getSalesCount,
+  getStockCount,
+  getStoreAllDetails,
+  getStoreRevenue,
+} from "@/actions/get-dashboard-stats"
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Heading } from "@/components/ui/heading"
@@ -33,31 +39,23 @@ const DashboardPage: React.FC<DashboardPageProps> = async ({ params }) => {
         <div className="grid gap-4 grid-cols-3">
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">
-                Total Revenue
-              </CardTitle>
+              <CardTitle className="text-sm font-medium">Total Revenue</CardTitle>
               <DollarSign className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
 
             <CardContent>
-              <div className="text-3xl font-bold">
-                {formatPrice(totalRevenue)}
-              </div>
+              <div className="text-3xl font-bold">{formatPrice(totalRevenue)}</div>
             </CardContent>
           </Card>
 
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">
-                Sales
-              </CardTitle>
+              <CardTitle className="text-sm font-medium">Sales</CardTitle>
               <CreditCard className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
 
             <CardContent>
-              <div className="text-3xl font-bold">
-                +{salesCount}
-              </div>
+              <div className="text-3xl font-bold">+{salesCount}</div>
             </CardContent>
           </Card>
 
@@ -70,9 +68,7 @@ const DashboardPage: React.FC<DashboardPageProps> = async ({ params }) => {
             </CardHeader>
 
             <CardContent>
-              <div className="text-3xl font-bold">
-                {stockCount}
-              </div>
+              <div className="text-3xl font-bold">{stockCount}</div>
             </CardContent>
           </Card>
         </div>
